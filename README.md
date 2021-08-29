@@ -1,8 +1,3 @@
-TNEI Template Repository
-========================
-
-This is a repository template for TNEI projects.
-
 Getting started 
 =============================
 
@@ -78,19 +73,5 @@ rtneitemplate/
 &nbsp;&nbsp;&nbsp;This subpackage contains code being used for research and testing.
 
 # Email
-Delete where appropriate...
-
-Gordon McFadzean - Principal Consultant\
-<gordon.mcfadzean@tneigroup.com>
-
 Dr. Diptargha Chakravorty - Principal Consultant\
 <diptargha.chakravorty@tneigroup.com>
-
-Dr. Gruffudd Edwards - Senior Consultant\
-<gruffudd.edwards@tneigroup.com>
-
-Sarah Sheehy - Technical Consultant\
-<sarah.sheehy@tneigroup.com>
-
-Max McFarlane - Technical Consultant\
-<max.mcfarlane@tneigroup.com>
