@@ -113,7 +113,7 @@ class StreamlitApp:
             unsafe_allow_html=True
         )
 
-        column_1, column_2 = st.beta_columns(2)
+        column_1, column_2 = st.columns(2)
         column_1.markdown(
             f'<p class="font-style" >Prediction </p>',
             unsafe_allow_html=True
