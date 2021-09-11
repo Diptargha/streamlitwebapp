@@ -6,12 +6,6 @@ import matplotlib.ticker as ticker
 import seaborn as sns
 from itertools import combinations
 
-st.set_page_config(layout="wide")
-st.title("Data explorer")
-st.write("""
- ## Select a file to explore the dataset
-""")
-
 
 def plot_data(data, feature1, feature2):
     """ plot user selected columns"""
@@ -76,43 +70,50 @@ def plot_data(data, feature1, feature2):
     st.pyplot(fig)
 
 
-uploaded_file = st.file_uploader("Choose a csv file")
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    headers = df.columns
-    if 'Unnamed: 0' in headers:
-        headers = headers.drop('Unnamed: 0')
-    col1, col2 = st.columns([1, 1])
-
-    with col1.expander('first 10 rows of the data'):
-        st.write("""
-         `scroll to see more rows and columns`
-        """)
-        st.write(df)
-    col2.write("""
-    
-    """)
-
+def run():
+    st.set_page_config(layout="wide")
+    st.title("Data explorer")
     st.write("""
-    ***which features do you want to plot?***
+     ## Select a file to explore the dataset
     """)
 
-    col3, col4 = st.columns([1, 1])
+    uploaded_file = st.file_uploader("Choose a csv file")
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        headers = df.columns
+        if 'Unnamed: 0' in headers:
+            headers = headers.drop('Unnamed: 0')
+        col1, col2 = st.columns([1, 1])
 
-    feature1 = col3.selectbox(
-        'select feature one:',
-        headers
-    )
-    col3.write(f"""
-    `Selected feature - {feature1}`
-    """)
+        with col1.expander('first 10 rows of the data'):
+            st.write("""
+             `scroll to see more rows and columns`
+            """)
+            st.write(df)
+        col2.write("""
+        
+        """)
 
-    feature2 = col4.selectbox(
-        'select feature two:',
-        headers
-    )
-    col4.write(f"""
-    `Selected feature - {feature2}`
-    """)
+        st.write("""
+        ***which features do you want to plot?***
+        """)
 
-    plot_data(df, feature1, feature2)
+        col3, col4 = st.columns([1, 1])
+
+        feature1 = col3.selectbox(
+            'select feature one:',
+            headers
+        )
+        col3.write(f"""
+        `Selected feature - {feature1}`
+        """)
+
+        feature2 = col4.selectbox(
+            'select feature two:',
+            headers
+        )
+        col4.write(f"""
+        `Selected feature - {feature2}`
+        """)
+
+        plot_data(df, feature1, feature2)
