@@ -25,12 +25,12 @@ def page_introduction():
             left sidebar.
             """)
 
-    image1 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist1.png?token" \
-             "=AIAWV2ZQOGWADUFWZM3ZWBLAN3CD6 "
-    image2 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist1.png?token" \
-             "=AIAWV2ZQOGWADUFWZM3ZWBLAN3CD6 "
-    image3 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist1.png?token" \
-             "=AIAWV2ZQOGWADUFWZM3ZWBLAN3CD6 "
+    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
+             "-analysis.gif"
+    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
+             "-analysis.gif "
+    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
+             "-analysis.gif"
 
     def make_line():
         """ Line divider between images. """
