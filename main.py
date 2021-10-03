@@ -11,7 +11,7 @@ st.set_page_config(layout="wide", page_title='Data Explorer')
 
 logo, name = st.sidebar.columns(2)
 with logo:
-    image = Image.open('https://github.com/Diptargha/streamlitwebapp/blob/master/images/analysis.gif')
+    image = "https://github.com//Diptargha//streamlitwebapp//blob//master//images//analysis.gif"
     st.image(image, use_column_width=True)
 with name:
     st.markdown("<h1 style='text-align: left; color: grey;'> \
