@@ -14,7 +14,7 @@ def page_introduction():
     st.sidebar.write("")
     st.sidebar.write("")
 
-    st.markdown("<h2 style='text-align: center;'> Welcome To </h2>",
+    st.markdown("<h2 style='text-align: center; color: grey;'> Welcome To </h2>",
                 unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
                 unsafe_allow_html=True)
@@ -42,15 +42,14 @@ def page_introduction():
         return line
 
     # Images and brief explanations.
-    request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
-                        "analysis.png")
-    image = Image.open('analysis.png')
-    # image = Image.open(request.get(image1, stream=True).raw)
+    # request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
+    #                     "test.png")
+    image = Image.open('C:\\Users\\chakravortyd\\Documents\\GitHub\\streamlitwebapp\\images\\test.png')
 
     st.error('Explore datasets')
     feature1, feature2 = st.columns([0.5, 0.4])
     with feature1:
-        st.image(image1, use_column_width=True)
+        st.image(image, use_column_width=True)
     with feature2:
         st.warning('Select features')
         st.info("""

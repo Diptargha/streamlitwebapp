@@ -3,7 +3,7 @@ A simple streamlit app to load csv files and plot the data for each column
 """
 
 import streamlit as st
-
+from PIL import Image
 from script import csv_file_explorer
 from script.introduction import page_introduction
 
@@ -11,8 +11,7 @@ st.set_page_config(layout="wide", page_title='Data Explorer')
 
 logo, name = st.sidebar.columns(2)
 with logo:
-    image = 'https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/logo_da.png?token' \
-            '=AIAWV2ZRCFKYM42DVFTD3OLAN3CQK '
+    image = Image.open('C:\\Users\\chakravortyd\\Documents\\GitHub\\streamlitwebapp\\images\\analysis.gif')
     st.image(image, use_column_width=True)
 with name:
     st.markdown("<h1 style='text-align: left; color: grey;'> \
