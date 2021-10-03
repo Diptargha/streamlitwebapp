@@ -359,8 +359,9 @@ def run():
     st.write("""
      ## Select a file to explore the dataset
     """)
-
-    uploaded_file = st.file_uploader("Choose a csv file")
+    st.markdown("<h3 style='text-align: left; color: grey;'> \
+                    Choose a csv file </h3>", unsafe_allow_html=True)
+    uploaded_file = st.file_uploader('')
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         headers = df.columns

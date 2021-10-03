@@ -1,4 +1,6 @@
 import streamlit as st
+from PIL import Image
+import urllib.request as request
 
 
 def page_introduction():
@@ -20,13 +22,12 @@ def page_introduction():
     st.info("""
             There are two main features: \n
             - Explore datasets
-            - Fit distributions (coming up) 
+            - Fit distributions (coming up) \n
             $←$ To start playing with the app, select an option on the 
             left sidebar.
             """)
 
-    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
-             "-analysis.png"
+    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/26448-analysis.gif"
     image2 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
              "-analysis.gif"
     image3 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
@@ -40,7 +41,11 @@ def page_introduction():
 
         return line
 
-        # Images and brief explanations.
+    # Images and brief explanations.
+    # request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
+    #                     "analysis.png")
+    # image = Image.open('analysis.png')
+    # image = Image.open(request.get(image1, stream=True).raw)
 
     st.error('Explore datasets')
     feature1, feature2 = st.columns([0.5, 0.4])
