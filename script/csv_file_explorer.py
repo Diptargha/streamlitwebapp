@@ -153,6 +153,7 @@ def _plot_data_scatter(data, feature1, feature2, feature3, feature4, bCategorica
             y=feature2,
             color=feature3,
             size=feature4,
+            # facet_col=feature3,
             hover_data=["petal_width"],
             # title="",
         )
@@ -178,13 +179,47 @@ def _plot_data_scatter(data, feature1, feature2, feature3, feature4, bCategorica
     st.plotly_chart(plot, use_container_width=True)
 
 
-def _plot_data_marginal(df, feature1, feature2):
+def _plot_data_marginal(df, feature1, feature2, feature3, feature4, bCategorical):
     """scatter plot with marginals of x and y axes data"""
-    plot = px.scatter(df,
-                      x=feature1,
-                      y=feature2,
-                      marginal_x="histogram",
-                      marginal_y="histogram")
+
+    if bCategorical:
+        plot = px.scatter(df,
+                          x=feature1,
+                          y=feature2,
+                          color=feature3,
+                          marginal_x="box",
+                          marginal_y="violin",
+                          color_discrete_sequence=px.colors.qualitative.Antique)
+
+    else:
+        plot = px.scatter(df,
+                          x=feature1,
+                          y=feature2,
+                          marginal_x="histogram",
+                          marginal_y="histogram",
+                          color_discrete_sequence=px.colors.qualitative.Antique)
+
+    _plotly_update_layout(plot, feature1, feature2)
+
+    st.plotly_chart(plot, use_container_width=True)
+
+
+def _plot_data_heatmap(df, feature1, feature2, feature3, feature4, bCategorical):
+    """plots density heatmap"""
+    if bCategorical:
+        plot = px.density_heatmap(df,
+                                  x=feature1,
+                                  y=feature2,
+                                  z=feature4,
+                                  facet_col=feature3,
+                                  marginal_x="box",
+                                  marginal_y="violin")
+    else:
+        plot = px.density_heatmap(df,
+                                  x=feature1,
+                                  y=feature2,
+                                  marginal_x="box",
+                                  marginal_y="violin")
 
     _plotly_update_layout(plot, feature1, feature2)
 
@@ -287,6 +322,7 @@ def run():
             "Bar",
             "Histogram",
             "Marginal Distribution",
+            'Density Heatmap',
             "Line",
             "3D Scatter",
         )  # maybe add 'Boxplot'
@@ -303,7 +339,10 @@ def run():
             ***this plot type will be added soon***
             """)
         elif chart_type == 'Marginal Distribution':
-            _plot_data_marginal(df, feature1, feature2)
+            _plot_data_marginal(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
+
+        elif chart_type == 'Density Heatmap':
+            _plot_data_heatmap(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
 
 
 
