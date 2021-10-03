@@ -37,10 +37,6 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
-# General information about the project.
-project = "templatetnei"
-copyright = "2020, Gordon McFadzean"
-
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
@@ -179,7 +175,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "sample.tex", "sample Documentation", "Gordon McFadzean", "manual"),
+    ("index", "sample.tex", "sample Documentation", "Diptargha Chakravorty", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -207,7 +203,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [("index", "sample", "sample Documentation", ["Gordon McFadzean"], 1)]
+man_pages = [("index", "sample", "sample Documentation", ["Diptargha Chakravorty"], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -223,7 +219,7 @@ texinfo_documents = [
         "index",
         "sample",
         "sample Documentation",
-        "Gordon McFadzean",
+        "Diptargha Chakravorty",
         "sample",
         "One line description of project.",
         "Miscellaneous",
