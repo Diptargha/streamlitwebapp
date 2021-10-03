@@ -58,21 +58,7 @@ rtneitemplate/
 &nbsp;&nbsp;&nbsp;`...repo_name...->app`\
 &nbsp;&nbsp;&nbsp;This will contain code used for operating the model through a user interface.\
  \
-2.2 Data I/O:\
-&nbsp;&nbsp;&nbsp;`...repo_name...->data`\
-&nbsp;&nbsp;&nbsp;This will be used to store and access input data.\
 
-3. Process Code:\
-&nbsp;&nbsp;&nbsp;`process`\
-&nbsp;&nbsp;&nbsp;This directory contains scripts for fetching and processing input data\
- \
-3.1 Sub-model:\
-&nbsp;&nbsp;&nbsp;`process->...sub-model...`\
-&nbsp;&nbsp;&nbsp;This code processes and merges GSP, Ninja and Zone demand/generation data.\
-
-4. WIP Code:\
-&nbsp;&nbsp;&nbsp;`research`\
-&nbsp;&nbsp;&nbsp;This subpackage contains code being used for research and testing.
 
 # Email
 Dr. Diptargha Chakravorty - Principal Consultant\
