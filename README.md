@@ -22,29 +22,19 @@ Getting started
 `4.2 Select "Existing Directory" -> Select venv engine "...repor_base_dir...\venv\Scripts\python.exe"`\
 `4.3 Click "Apply" -> Click "Ok"`
 
-----------------------------------
 
-# Running...repo_name...
-
-----------------------------------
-
-### File Tree
+# File Tree
 
 ```
-rtneitemplate/
 ├── data/
-│   └── .gitignore
+│
 ├── docs/
 │   └── .gitignore
-├── output/
-│   └── .gitignore
-├── R/
-├── ├── subpackage1
-│   │   └ .gitignore
-│   └── subpackage2
-│       └ .gitignore
-├── rtemplatetnei.Rproj
+├── venv/
+|   └── .gitignore
 └── README.md
+|
+└── requirements.txt
 ```
 
 # Directory
