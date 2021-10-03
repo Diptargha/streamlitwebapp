@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 import matplotlib.ticker as ticker
 import seaborn as sns
 import plotly.express as px
+import plotly.graph_objects as go
+
 from itertools import combinations
 
 
@@ -48,13 +50,20 @@ def display_mode(plot_mode):
         plt.rcParams['figure.facecolor'] = 'white'
 
 
-def setup(ax):
-    ax.spines['right'].set_color('white')
-    ax.spines['left'].set_color('white')
+def _setup(ax):
+    ax.spines['right'].set_color('black')
+    ax.spines['left'].set_color('black')
+    ax.spines['top'].set_color('black')
+    ax.spines['bottom'].set_color('black')
+
+    ax.spines['right'].set_linewidth(0.3)
+    ax.spines['left'].set_linewidth(0.3)
+    ax.spines['top'].set_linewidth(0.3)
+    ax.spines['bottom'].set_linewidth(0.3)
+
     ax.yaxis.set_major_locator(ticker.AutoLocator())
-    ax.spines['top'].set_color('white')
-    ax.spines['bottom'].set_color('white')
     ax.xaxis.set_ticks_position('bottom')
+
     ax.tick_params(which='major', width=1.00)
     ax.tick_params(which='major', length=5)
     ax.tick_params(which='minor', width=0.75)
@@ -65,7 +74,22 @@ def setup(ax):
     return
 
 
-def _plot_data_bar(data, feature1, feature2):
+def _plotly_update_layout(plot, feature1, feature2):
+    """update the font size and type for plotly graphs"""
+    plot.update_layout(
+        # title="Plot Title",
+        xaxis_title=feature1,
+        yaxis_title=feature2,
+        # legend_title="Legend Title",
+        font=dict(
+            family="Courier New, monospace",
+            size=16,
+            color="RebeccaPurple"
+        )
+    )
+
+
+def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
     """ plot bar chart for user selected columns"""
 
     def format_func(value, tick_number):
@@ -73,37 +97,42 @@ def _plot_data_bar(data, feature1, feature2):
         return "$%.2f$" % value
 
     rc = {'figure.figsize': (18, 4.5),
-          'axes.facecolor': '#0e1117',
-          'axes.edgecolor': '#0e1117',
-          'axes.labelcolor': 'white',
-          'figure.facecolor': '#0e1117',
-          'patch.edgecolor': '#0e1117',
-          'text.color': 'white',
-          'xtick.color': 'white',
-          'ytick.color': 'white',
+          'axes.facecolor': '#FFFFFF',  # 0e1117 - black
+          'axes.edgecolor': '#FFFFFF',
+          'axes.labelcolor': 'black',
+          'figure.facecolor': '#FFFFFF',
+          'patch.edgecolor': '#FFFFFF',
+          'text.color': 'black',
+          'xtick.color': 'black',
+          'ytick.color': 'black',
           'grid.color': 'grey',
           'font.size': 8,
+          'font.family': 'Courier New',
           'axes.labelsize': 8,
-          'xtick.labelsize': 5,
-          'ytick.labelsize': 5}
+          'xtick.labelsize': 7,
+          'ytick.labelsize': 7}
 
     plt.rcParams.update(rc)
     headers = data.columns
     if 'Unnamed: 0' in headers:
         headers = headers.drop('Unnamed: 0')
-    columns = list(combinations(headers, 2))
+
     subplot_col = 2
-    # subplot_row = round(len(columns) / subplot_col)
     subplot_row = 2
+
     fig = plt.figure()
     plot_num = 1
 
-    # for col in columns:
     ax = fig.add_subplot(subplot_row, subplot_col, plot_num)
 
-    # sns.barplot(x=col[0], y=col[1], data=data, color="#b80606", ax=ax)
-    sns.barplot(x=feature1, y=feature2, data=data.round(2), color="salmon", saturation=0.5, ax=ax)
-    setup(ax)
+    if bCategorical:
+        sns.barplot(x=feature1, y=feature2, data=data.round(2), hue=feature3, errcolor='black', errwidth=0.2,
+                    color="#BEADE9", saturation=0.5, ax=ax)
+    else:
+        sns.barplot(x=feature1, y=feature2, data=data.round(2), errcolor='black', errwidth=0.2,
+                    color="#BEADE9", saturation=0.5, ax=ax)
+
+    _setup(ax)
 
     # ax.xaxis.set_major_formatter(ticker.FuncFormatter(format_func))
     # ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f'))
@@ -114,16 +143,50 @@ def _plot_data_bar(data, feature1, feature2):
     st.pyplot(fig)
 
 
-def _plot_data_scatter(data, feature1, feature2):
+def _plot_data_scatter(data, feature1, feature2, feature3, feature4, bCategorical):
     """scatter plot of selected data"""
 
-    plot = px.scatter(
-        data_frame=data,
-        x=feature1,
-        y=feature2,
-        # color="species",
-        # title="",
-    )
+    if bCategorical:
+        plot = px.scatter(
+            data_frame=data,
+            x=feature1,
+            y=feature2,
+            color=feature3,
+            size=feature4,
+            hover_data=["petal_width"],
+            # title="",
+        )
+    else:
+        plot = go.Figure(data=go.Scatter(
+            x=data[feature1],
+            y=data[feature2],
+            mode='markers',
+            marker=dict(
+                size=16,
+                color=data[feature2],  # set color equal to a variable
+                colorscale='Viridis',  # one of plotly colorscales
+                showscale=True,
+                colorbar=dict(
+                    title=feature2,
+                    borderwidth=0.1,
+                    thickness=20
+                )
+            )
+        ))
+
+    _plotly_update_layout(plot, feature1, feature2)
+    st.plotly_chart(plot, use_container_width=True)
+
+
+def _plot_data_marginal(df, feature1, feature2):
+    """scatter plot with marginals of x and y axes data"""
+    plot = px.scatter(df,
+                      x=feature1,
+                      y=feature2,
+                      marginal_x="histogram",
+                      marginal_y="histogram")
+
+    _plotly_update_layout(plot, feature1, feature2)
 
     st.plotly_chart(plot, use_container_width=True)
 
@@ -164,10 +227,10 @@ def run():
         ***which features do you want to plot?***
         """)
 
-        col3, col4 = st.columns([1, 1])
+        col3, col4, col5 = st.columns([1, 1, 1])
 
         feature1 = col3.selectbox(
-            'select feature one (x-axis):',
+            'select feature one - only numerical columns (x-axis):',
             headers
         )
         col3.write(f"""
@@ -182,6 +245,35 @@ def run():
         `Selected feature - {feature2}`
         """)
 
+        categorical = col5.selectbox(
+            'Is it a categorical dataset?',
+            ['Yes', 'No']
+        )
+
+        if categorical == 'Yes':
+            col6, col7 = st.columns([1, 1])
+
+            feature3 = col6.selectbox(
+                'select a categorical data column (optional):',
+                headers
+            )
+            col6.write(f"""
+            `Selected categorical column - {feature3}`
+            """)
+
+            feature4 = col7.selectbox(
+                'select a fourth feature - numerical (optional):',
+                headers
+            )
+            col7.write(f"""
+            `Selected categorical column - {feature4}`
+            """)
+        else:
+            feature3, feature4 = None, None
+
+        # col6.write(f"""
+        # `Selected feature - {feature2}`
+        # """)
         # Figure display properties expander
         # with make_expanders("Tweak display"):
         #
@@ -192,8 +284,9 @@ def run():
 
         plot_types = (
             "Scatter",
-            "Histogram",
             "Bar",
+            "Histogram",
+            "Marginal Distribution",
             "Line",
             "3D Scatter",
         )  # maybe add 'Boxplot'
@@ -202,13 +295,17 @@ def run():
         chart_type = st.selectbox("Choose your chart type", plot_types)
 
         if chart_type == 'Scatter':
-            _plot_data_scatter(df, feature1, feature2)
+            _plot_data_scatter(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
         elif chart_type == 'Bar':
-            _plot_data_bar(df, feature1, feature2)
+            _plot_data_bar(df, feature1, feature2, feature3, True if categorical == 'Yes' else False)
         elif chart_type == 'Histogram':
             st.write("""
             ***this plot type will be added soon***
             """)
+        elif chart_type == 'Marginal Distribution':
+            _plot_data_marginal(df, feature1, feature2)
+
+
 
         elif chart_type == 'Line':
             st.write("""
