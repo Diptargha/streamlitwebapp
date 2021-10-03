@@ -6,6 +6,7 @@ import matplotlib.ticker as ticker
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from itertools import combinations
 
@@ -71,6 +72,7 @@ def _setup(ax):
     # ax.set_xlim(0, 5)
     # ax.set_ylim(0, 1)
     ax.patch.set_alpha(0.0)
+
     return
 
 
@@ -89,13 +91,8 @@ def _plotly_update_layout(plot, feature1, feature2):
     )
 
 
-def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
-    """ plot bar chart for user selected columns"""
-
-    def format_func(value, tick_number):
-        """ return as string formatted """
-        return "$%.2f$" % value
-
+def _plot_update_rc():
+    """update the rc fields of matplotlib"""
     rc = {'figure.figsize': (18, 4.5),
           'axes.facecolor': '#FFFFFF',  # 0e1117 - black
           'axes.edgecolor': '#FFFFFF',
@@ -113,6 +110,11 @@ def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
           'ytick.labelsize': 7}
 
     plt.rcParams.update(rc)
+
+
+def _matplotlib_figure(data, plot_num=1):
+    """returns the axes for a matplotlib figure to further use for plotting"""
+    _plot_update_rc()
     headers = data.columns
     if 'Unnamed: 0' in headers:
         headers = headers.drop('Unnamed: 0')
@@ -121,9 +123,54 @@ def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
     subplot_row = 2
 
     fig = plt.figure()
-    plot_num = 1
 
     ax = fig.add_subplot(subplot_row, subplot_col, plot_num)
+
+    return ax, fig
+
+
+def _plot_data_line(df, feature1, feature2, feature3, feature4, bCategorical):
+    """line plots using plotly and seaborn"""
+    if bCategorical:
+        ax, fig = _matplotlib_figure(df, plot_num=1)
+        sns.lineplot(data=df, x=feature1, y=feature2, hue=feature3, style=feature3)
+
+        _setup(ax)
+        plt.grid(True, linestyle='--', linewidth=0.4, color='#CFCFCF')
+        st.pyplot(fig)
+
+        ax, fig = _matplotlib_figure(df, plot_num=2)
+        sns.lineplot(data=df, x=feature1, y=feature4, hue=feature3, style=feature3)
+
+        _setup(ax)
+        plt.grid(True, linestyle='--', linewidth=0.4, color='#CFCFCF')
+        st.pyplot(fig)
+
+        ax, fig = _matplotlib_figure(df, plot_num=3)
+        sns.lineplot(data=df, x=feature2, y=feature4, hue=feature3, style=feature3)
+
+        _setup(ax)
+        plt.grid(True, linestyle='--', linewidth=0.4, color='#CFCFCF')
+        st.pyplot(fig)
+
+    else:
+        plot = px.line(df,
+                       x=feature1,
+                       y=feature2,
+                       markers=True,
+                       color_discrete_sequence=px.colors.qualitative.Antique)
+        plt.grid(True, linestyle='--', linewidth=0.4, color='#CFCFCF')
+        st.plotly_chart(plot, use_container_width=True)
+
+
+def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
+    """ plot bar chart for user selected columns"""
+
+    def format_func(value, tick_number):
+        """ return as string formatted """
+        return "$%.2f$" % value
+
+    ax, fig = _matplotlib_figure(data)
 
     if bCategorical:
         sns.barplot(x=feature1, y=feature2, data=data.round(2), hue=feature3, errcolor='black', errwidth=0.2,
@@ -141,6 +188,61 @@ def _plot_data_bar(data, feature1, feature2, feature3, bCategorical):
     plt.grid(False)
 
     st.pyplot(fig)
+
+
+def _plot_data_histogram(df, feature1, feature2, feature3, feature4, bCategorical):
+    """plot histogram in plotly"""
+
+    if bCategorical:
+        plot1 = px.histogram(df,
+                             x=feature1,
+                             facet_col=feature3,
+                             color=feature3,
+                             histnorm='probability density',
+                             color_discrete_sequence=px.colors.qualitative.Antique)
+
+        plot2 = px.histogram(df,
+                             x=feature2,
+                             facet_col=feature3,
+                             color=feature3,
+                             histnorm='probability density',
+                             color_discrete_sequence=px.colors.qualitative.Antique)
+
+        plot3 = px.histogram(df,
+                             x=feature4,
+                             facet_col=feature3,
+                             color=feature3,
+                             histnorm='probability density',
+                             color_discrete_sequence=px.colors.qualitative.Antique)
+
+        st.plotly_chart(plot1, use_container_width=True)
+        st.plotly_chart(plot2, use_container_width=True)
+        st.plotly_chart(plot3, use_container_width=True)
+    else:
+        plot = go.Figure()
+        plot.add_trace(go.Histogram(
+            x=df[feature1],
+            histnorm='probability density',
+            showlegend=False,
+            text=feature1,
+            marker=dict(
+                color='firebrick')
+        ))
+        plot.add_trace(go.Histogram(
+            x=df[feature2],
+            histnorm='probability density',
+            showlegend=False,
+            text=feature2,
+            marker=dict(
+                color='khaki')
+        ))
+
+        plot.update_layout(barmode='overlay')
+        plot.update_traces(opacity=0.75)
+
+        _plotly_update_layout(plot, ' & '.join([feature1, feature2]), 'probability density')
+
+        st.plotly_chart(plot, use_container_width=True)
 
 
 def _plot_data_scatter(data, feature1, feature2, feature3, feature4, bCategorical):
@@ -204,7 +306,7 @@ def _plot_data_marginal(df, feature1, feature2, feature3, feature4, bCategorical
     st.plotly_chart(plot, use_container_width=True)
 
 
-def _plot_data_heatmap(df, feature1, feature2, feature3, feature4, bCategorical):
+def _plot_data_density_heatmap(df, feature1, feature2, feature3, feature4, bCategorical):
     """plots density heatmap"""
     if bCategorical:
         plot = px.density_heatmap(df,
@@ -224,6 +326,23 @@ def _plot_data_heatmap(df, feature1, feature2, feature3, feature4, bCategorical)
     _plotly_update_layout(plot, feature1, feature2)
 
     st.plotly_chart(plot, use_container_width=True)
+
+
+def _plot_data_corr_heatmap(df, feature1, feature3, bCategorical):
+    """show the correlation between features through heatmap"""
+    ax, fig = _matplotlib_figure(df)
+    if bCategorical:
+        sns.heatmap(df.corr(),
+                    annot=True,
+                    linewidths=1,
+                    )
+    else:
+        sns.heatmap(df.corr(),
+                    annot=True,
+                    linewidths=1,
+                    )
+    # _setup(ax)
+    st.pyplot(fig)
 
 
 def make_expanders(expander_name, sidebar=True):
@@ -323,6 +442,7 @@ def run():
             "Histogram",
             "Marginal Distribution",
             'Density Heatmap',
+            'Correlation Heatmap',
             "Line",
             "3D Scatter",
         )  # maybe add 'Boxplot'
@@ -335,21 +455,19 @@ def run():
         elif chart_type == 'Bar':
             _plot_data_bar(df, feature1, feature2, feature3, True if categorical == 'Yes' else False)
         elif chart_type == 'Histogram':
-            st.write("""
-            ***this plot type will be added soon***
-            """)
+            _plot_data_histogram(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
         elif chart_type == 'Marginal Distribution':
             _plot_data_marginal(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
 
         elif chart_type == 'Density Heatmap':
-            _plot_data_heatmap(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
+            _plot_data_density_heatmap(df, feature1, feature2, feature3, feature4,
+                                       True if categorical == 'Yes' else False)
 
-
+        elif chart_type == 'Correlation Heatmap':
+            _plot_data_corr_heatmap(df, feature1, feature3, True if categorical == 'Yes' else False)
 
         elif chart_type == 'Line':
-            st.write("""
-            ***this plot type will be added soon***
-            """)
+            _plot_data_line(df, feature1, feature2, feature3, feature4, True if categorical == 'Yes' else False)
 
         elif chart_type == '3D Scatter':
             st.write("""
