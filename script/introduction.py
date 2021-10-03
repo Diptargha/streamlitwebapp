@@ -42,9 +42,9 @@ def page_introduction():
         return line
 
     # Images and brief explanations.
-    # request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
-    #                     "analysis.png")
-    # image = Image.open('analysis.png')
+    request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
+                        "analysis.png")
+    image = Image.open('analysis.png')
     # image = Image.open(request.get(image1, stream=True).raw)
 
     st.error('Explore datasets')
