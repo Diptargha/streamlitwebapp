@@ -3,16 +3,16 @@ A simple streamlit app to load csv files and plot the data for each column
 """
 
 import streamlit as st
-from PIL import Image
+from streamlit_lottie import st_lottie
 from script import csv_file_explorer
+from script.ui_components import load_lottieurl
 from script.introduction import page_introduction
 
 st.set_page_config(layout="wide", page_title='Data Explorer')
 
 logo, name = st.sidebar.columns(2)
 with logo:
-    image = "https://github.com//Diptargha//streamlitwebapp//blob//master//images//analysis.gif"
-    st.image(image, use_column_width=True)
+    st_lottie(load_lottieurl('images/analysis.json'))
 with name:
     st.markdown("<h1 style='text-align: left; color: grey;'> \
                 Data Explorer </h1>", unsafe_allow_html=True)
