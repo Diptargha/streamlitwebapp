@@ -7,15 +7,22 @@ from script import all_images as im
 
 def _main():
     """includes all items in the aboutme page"""
-    # stc.html("<p style='color:red;'> Test </p>")
-    html_test = """
-    <div style='background-color:green;padding:10px;border-radius:10px;opacity:1'>
-    <h2 style='color:white;test-align:left;font-weight: normal;font-size: 22px;font-family: sans-serif'
-    > Steps to use the app </div>
-    """
 
-    html_test = slideshow.html_slideshow(im.image_step1, im.image_step2, im.image_step3)
-    stc.html(html_test, height=800)
+    col1, col2 = st.columns([0.4, 0.6])
+    with col1:
+
+        st.image(im.image_author, width=400)
+
+    with col2:
+        st.write('# About me')
+        stc.html("""
+                <div style='background-color:black;padding:2px 4px;border-radius:20px;opacity:1; height:200'>
+                <h2 style='color:white;text-align:left;font-weight: normal;font-size: 24px;font-family: sans-serif'
+                >  Hello! My name is Diptargha Chakravorty. I am a Power Systems consultant working in the area of 
+                renewable energy and its impact on the electricity network. I created this app as a hobby 
+                project. Now it serves as a useful plotting tool. Hope you find it useful as well! 
+                </div>
+                """, height=800)
 
 
 def run():

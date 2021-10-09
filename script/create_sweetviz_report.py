@@ -5,12 +5,11 @@ from streamlit_lottie import st_lottie
 from script.ui_components import load_lottieurl
 from script import all_images as im
 
-
 def _main():
     """includes all items in the sweetviz page"""
-    temp1, temp2 = st.columns([0.5, 0.5])
-    with temp1:
-        st_lottie(load_lottieurl(im.image_comingsoon))
+
+    st.write("almost there...")
+    st_lottie(load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_m6cuL6.json"))
 
 
 def run():

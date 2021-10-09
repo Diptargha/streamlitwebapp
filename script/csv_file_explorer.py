@@ -8,7 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from itertools import combinations
+from script import ui_components as ui
 
 
 def display_mode(plot_mode):
@@ -361,6 +361,13 @@ def run():
     """)
     st.markdown("<h3 style='text-align: left; color: grey;'> \
                     Choose a csv file </h3>", unsafe_allow_html=True)
+
+    file_path = 'data/Iris Dataset.csv'
+    c1, c2 = st.columns((2, 1))
+    with open(file_path, 'r') as f:
+        dl_button = ui.download_button(f.read(), 'sample_file.txt', 'Try it out with my sample file!')
+        c1.markdown(dl_button, unsafe_allow_html=True)
+
     uploaded_file = st.file_uploader('')
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)

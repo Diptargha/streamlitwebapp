@@ -27,9 +27,9 @@ def page_introduction():
         st.info("""
                 There are two main features: \n
                 - Explore a dataset through different charts
-                - Use Sweetviz reporting to get a deeper insight (coming up) \n
+                - Use Sweetviz reporting to get a deeper insight (coming soon) \n
                 Steps to use the app is explained below. Currently, the app supports
-                only csv format for the dataset. \n
+                *.txt* and *.csv* formats for the dataset. \n
                 Please feel free to use the sample file if you don't have one to hand.\n
                 
                 $←$ To start playing with the app, select an option on the 
@@ -38,7 +38,6 @@ def page_introduction():
 
     with feature2:
         st_lottie(load_lottieurl(im.image_datacharts), height=300)
-
 
     def make_line():
         """ Line divider between images. """
@@ -118,5 +117,8 @@ def page_introduction():
                 """)
 
     make_line()
+
+    # html_test = slideshow.html_slideshow(im.image_step1, im.image_step2, im.image_step3)
+    # stc.html(html_test, height=800)
 
     return
