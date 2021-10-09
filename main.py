@@ -24,7 +24,7 @@ def main():
     """calling individual pages on the website"""
 
     pages = {
-        "Introduction": page_introduction,
+        "Home": page_introduction,
         "Explore dataset": csv_file_explorer.run,
     }
 

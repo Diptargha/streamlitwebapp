@@ -27,11 +27,9 @@ def page_introduction():
             left sidebar.
             """)
 
-    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/test.png"
-    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
-             "-analysis.gif"
-    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/7d0d25ad64123f7a2895b672c0e4754f135b1440/images/26448" \
-             "-analysis.gif"
+    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/test.png?raw=true"
+    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/analysis.gif?raw=true"
+    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/analysis.gif?raw=true"
 
     def make_line():
         """ Line divider between images. """
@@ -44,7 +42,7 @@ def page_introduction():
     # Images and brief explanations.
     # request.urlretrieve('https://github.com/Diptargha/streamlitwebapp/tree/master/images',
     #                     "test.png")
-    # image = Image.open('C:\\Users\\chakravortyd\\Documents\\GitHub\\streamlitwebapp\\images\\test.png')
+    # image = Image.open("C:\Users\chakravortyd\Documents\GitHub\streamlitwebapp\images\test.png")
 
     st.error('Explore datasets')
     feature1, feature2 = st.columns([0.5, 0.4])
