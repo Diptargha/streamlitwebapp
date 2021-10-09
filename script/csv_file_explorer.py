@@ -374,9 +374,9 @@ def run():
         headers = df.columns
         if 'Unnamed: 0' in headers:
             headers = headers.drop('Unnamed: 0')
-        col1, col2 = st.columns([1, 1])
+        col1, col2 = st.columns([0.99, 0.01])
 
-        with col1.expander('first 10 rows of the data'):
+        with col1.expander('first few rows of data'):
             st.write("""
              `scroll to see more rows and columns`
             """)

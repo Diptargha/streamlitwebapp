@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as stc
 
-from script import create_slideshow as slideshow
+from script import about_me_template as template
 from script import all_images as im
 
 
@@ -10,8 +10,8 @@ def _main():
 
     col1, col2 = st.columns([0.4, 0.6])
     with col1:
-
         st.image(im.image_author, width=400)
+        stc.html(template.html_aboutme_template(), height=250)
 
     with col2:
         st.write('# About me')
@@ -22,7 +22,7 @@ def _main():
                 renewable energy and its impact on the electricity network. I created this app as a hobby 
                 project. Now it serves as a useful plotting tool. Hope you find it useful as well! 
                 </div>
-                """, height=800)
+                """, height=400)
 
 
 def run():

@@ -52,7 +52,6 @@ def page_introduction():
     #                     "test.png")
     # image = Image.open("C:\Users\chakravortyd\Documents\GitHub\streamlitwebapp\images\test.png")
 
-    # st.subheader('Steps to use the app')
     st.markdown("<h2 style='text-align: left; color: green;'>Steps to use the app</h2>", unsafe_allow_html=True)
     st.success(" ")
     # st.info("## Steps to use the app")
