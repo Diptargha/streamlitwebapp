@@ -27,9 +27,11 @@ def page_introduction():
             left sidebar.
             """)
 
-    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/test.png?raw=true"
-    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/analysis.gif?raw=true"
-    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/analysis.gif?raw=true"
+    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%201.PNG?raw=true"
+    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%202.PNG?raw=true"
+    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%203.png?raw=true"
+    image4 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%204.png?raw=true"
+    image5 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%205.png?raw=true"
 
     def make_line():
         """ Line divider between images. """
@@ -45,14 +47,15 @@ def page_introduction():
     # image = Image.open("C:\Users\chakravortyd\Documents\GitHub\streamlitwebapp\images\test.png")
 
     st.error('Explore datasets')
-    feature1, feature2 = st.columns([0.5, 0.4])
+    feature1, feature2 = st.columns([0.6, 0.4])
     with feature1:
         st.image(image1, use_column_width=True)
     with feature2:
-        st.warning('Select features')
+        st.warning('Select a csv file')
         st.info("""
-                - Select features from dropdown menu
-                - Select chart type for visualisation
+                - Either select a file using the *Browse files* option
+                - Or drag and drop a file over it
+                - Use the provided sample csv file *Irish Dataset.csv * if you don't have one at hand
                 """)
 
     make_line()
@@ -61,9 +64,10 @@ def page_introduction():
     with feature3:
         st.image(image2, use_column_width=True)
     with feature4:
-        st.warning('Tweak Display')
+        st.warning('Data columns at a glance')
         st.info("""
-                - Pick *Dark/Light Theme*
+                - Click on the expander to see data columns
+                - Scroll on the side/bottom to see more rows and columns 
                 """)
     make_line()
 
@@ -71,9 +75,23 @@ def page_introduction():
     with feature5:
         st.image(image3, use_column_width=True)
     with feature6:
-        st.warning('Export')
+        st.warning('Feature selection')
         st.info("""
-                - Save charts in different format
+                - Option to select two features (data columns from the csv file)
+                - If the dataset has categorical columns, two more feature selection is made available
+                """)
+
+    make_line()
+
+    feature7, feature8 = st.columns([0.6, 0.4])
+    with feature7:
+        st.image(image4, use_column_width=True)
+    with feature8:
+        st.warning('Categorical feature')
+        st.info("""
+                - Set *categorical dataset* option to *Yes*
+                - Select a categorical column from the list of features
+                - option to select a fourth feature, this should be a column with numerical values
                 """)
 
     make_line()
