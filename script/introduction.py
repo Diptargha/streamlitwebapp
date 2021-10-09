@@ -1,7 +1,8 @@
 import streamlit as st
+from streamlit_lottie import st_lottie
 from PIL import Image
 import urllib.request as request
-
+from script.ui_components import load_lottieurl
 from script import all_images as im
 
 
@@ -21,14 +22,23 @@ def page_introduction():
                 unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
                 unsafe_allow_html=True)
+    feature1, feature2 = st.columns([0.6, 0.4])
+    with feature1:
+        st.info("""
+                There are two main features: \n
+                - Explore a dataset through different charts
+                - Use Sweetviz reporting to get a deeper insight (coming up) \n
+                Steps to use the app is explained below. Currently, the app supports
+                only csv format for the dataset. \n
+                Please feel free to use the sample file if you don't have one to hand.\n
+                
+                $←$ To start playing with the app, select an option on the 
+                left sidebar.
+                """)
 
-    st.info("""
-            There are two main features: \n
-            - Explore datasets
-            - Fit distributions (coming up) \n
-            $←$ To start playing with the app, select an option on the 
-            left sidebar.
-            """)
+    with feature2:
+        st_lottie(load_lottieurl(im.image_datacharts), height=300)
+
 
     def make_line():
         """ Line divider between images. """

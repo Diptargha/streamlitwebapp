@@ -8,15 +8,16 @@ from script import csv_file_explorer
 from script.ui_components import load_lottieurl
 from script.introduction import page_introduction
 from script import all_images as im
+from script import create_sweetviz_report
 from script import aboutme
 
 st.set_page_config(layout="wide", page_title='Data Explorer')
 
-logo, name = st.sidebar.columns(2)
+logo, name = st.sidebar.columns([0.6,0.4])
 with logo:
     st_lottie(load_lottieurl(im.image_sidebar))
 with name:
-    st.markdown("<h1 style='text-align: left; color: grey;'> \
+    st.markdown("<h1 style='text-align: left; color: grey; font-size: 32px'> \
                 Data Explorer </h1>", unsafe_allow_html=True)
 
 st.sidebar.write(" ")
@@ -27,8 +28,9 @@ def main():
 
     pages = {
         "Home": page_introduction,
-        "Explore dataset": csv_file_explorer.run,
-        "Test": aboutme.run,
+        "Explore through charts": csv_file_explorer.run,
+        "Explore through Sweetviz": create_sweetviz_report.run,
+        "About the author": aboutme.run,
     }
 
     st.sidebar.title("Page options")
