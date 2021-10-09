@@ -2,8 +2,11 @@ import streamlit as st
 from PIL import Image
 import urllib.request as request
 
+from script import all_images as im
+
 
 def page_introduction():
+    """includes all items in the home page"""
     # Space so that 'About' box-text is lower
     st.sidebar.write("")
     st.sidebar.write("")
@@ -27,16 +30,10 @@ def page_introduction():
             left sidebar.
             """)
 
-    image1 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%201.PNG?raw=true"
-    image2 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%202.PNG?raw=true"
-    image3 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%203.png?raw=true"
-    image4 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%204.png?raw=true"
-    image5 = "https://github.com/Diptargha/streamlitwebapp/blob/master/images/step%205.png?raw=true"
-
     def make_line():
         """ Line divider between images. """
 
-        line = st.markdown('<hr style="border:1px solid gray"> </hr>',
+        line = st.markdown('<hr style="border:1px solid green"> </hr>',
                            unsafe_allow_html=True)
 
         return line
@@ -46,10 +43,14 @@ def page_introduction():
     #                     "test.png")
     # image = Image.open("C:\Users\chakravortyd\Documents\GitHub\streamlitwebapp\images\test.png")
 
-    st.error('Explore datasets')
+    # st.subheader('Steps to use the app')
+    st.markdown("<h2 style='text-align: left; color: green;'>Steps to use the app</h2>", unsafe_allow_html=True)
+    st.success(" ")
+    # st.info("## Steps to use the app")
+
     feature1, feature2 = st.columns([0.6, 0.4])
     with feature1:
-        st.image(image1, use_column_width=True)
+        st.image(im.image_step1, use_column_width=True)
     with feature2:
         st.warning('Select a csv file')
         st.info("""
@@ -62,7 +63,7 @@ def page_introduction():
 
     feature3, feature4 = st.columns([0.6, 0.4])
     with feature3:
-        st.image(image2, use_column_width=True)
+        st.image(im.image_step2, use_column_width=True)
     with feature4:
         st.warning('Data columns at a glance')
         st.info("""
@@ -73,7 +74,7 @@ def page_introduction():
 
     feature5, feature6 = st.columns([0.6, 0.4])
     with feature5:
-        st.image(image3, use_column_width=True)
+        st.image(im.image_step3, use_column_width=True)
     with feature6:
         st.warning('Feature selection')
         st.info("""
@@ -85,13 +86,25 @@ def page_introduction():
 
     feature7, feature8 = st.columns([0.6, 0.4])
     with feature7:
-        st.image(image4, use_column_width=True)
+        st.image(im.image_step4, use_column_width=True)
     with feature8:
         st.warning('Categorical feature')
         st.info("""
                 - Set *categorical dataset* option to *Yes*
                 - Select a categorical column from the list of features
                 - option to select a fourth feature, this should be a column with numerical values
+                """)
+
+    make_line()
+
+    feature9, feature10 = st.columns([0.6, 0.4])
+    with feature9:
+        st.image(im.image_step5, use_column_width=True)
+    with feature10:
+        st.warning('Chart selection')
+        st.info("""
+                - Select a chart type from the drop-down menu
+                - Charts are created using plotly and seaborn
                 """)
 
     make_line()

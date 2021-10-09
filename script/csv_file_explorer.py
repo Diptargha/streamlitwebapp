@@ -426,17 +426,6 @@ def run():
         else:
             feature3, feature4 = None, None
 
-        # col6.write(f"""
-        # `Selected feature - {feature2}`
-        # """)
-        # Figure display properties expander
-        # with make_expanders("Tweak display"):
-        #
-        #     st.markdown("**Select Figure Mode:**")
-        #     plot_mode = st.radio("Options", ('Dark Mode', 'Light Mode'))
-        #
-        # display_mode(plot_mode)
-
         plot_types = (
             "Scatter",
             "Bar",

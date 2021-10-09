@@ -7,12 +7,14 @@ from streamlit_lottie import st_lottie
 from script import csv_file_explorer
 from script.ui_components import load_lottieurl
 from script.introduction import page_introduction
+from script import all_images as im
+from script import aboutme
 
 st.set_page_config(layout="wide", page_title='Data Explorer')
 
 logo, name = st.sidebar.columns(2)
 with logo:
-    st_lottie(load_lottieurl('images/analysis.json'))
+    st_lottie(load_lottieurl(im.image_sidebar))
 with name:
     st.markdown("<h1 style='text-align: left; color: grey;'> \
                 Data Explorer </h1>", unsafe_allow_html=True)
@@ -26,6 +28,7 @@ def main():
     pages = {
         "Home": page_introduction,
         "Explore dataset": csv_file_explorer.run,
+        "Test": aboutme.run,
     }
 
     st.sidebar.title("Page options")
