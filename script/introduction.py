@@ -22,8 +22,8 @@ def page_introduction():
                 unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
                 unsafe_allow_html=True)
-    feature1, feature2 = st.columns([0.6, 0.4])
-    with feature1:
+    col1, col2 = st.columns([0.6, 0.4])
+    with col2:
         st.info("""
                 There are two main features: \n
                 - Explore a dataset through different charts
@@ -36,7 +36,7 @@ def page_introduction():
                 left sidebar.
                 """)
 
-    with feature2:
+    with col1:
         st_lottie(load_lottieurl(im.image_datacharts1), height=300)
 
     def make_line():
