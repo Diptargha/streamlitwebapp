@@ -45,7 +45,7 @@ def main():
     st.sidebar.header("About")
     st.sidebar.warning(
         """
-            Data Explorer app is created and maintained by 
+            Data Explorer app is developed and maintained by 
             **Diptargha Chakravorty**. This is a very simple app 
             developed as an example for beginners. If you like this app please star its
             [**GitHub**](https://github.com/Diptargha/streamlitwebapp)

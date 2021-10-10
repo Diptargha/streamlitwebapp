@@ -65,7 +65,7 @@ def page_introduction():
         st.info("""
                 - Either select a file using the *Browse files* option
                 - Or drag and drop a file over it
-                - Use the provided sample csv file *Irish Dataset.csv * if you don't have one at hand
+                - Use the provided sample csv file *Irish Dataset.csv * if you don't have one to hand
                 """)
 
     make_line()
