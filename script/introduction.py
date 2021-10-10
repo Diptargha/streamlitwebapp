@@ -36,8 +36,8 @@ def page_introduction():
                 left sidebar.
                 """)
 
-    with feature2:
-        st_lottie(load_lottieurl(im.image_datacharts), height=300)
+    # with feature2:
+        # st_lottie(load_lottieurl(im.image_datacharts), height=300)
 
     def make_line():
         """ Line divider between images. """
