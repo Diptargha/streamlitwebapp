@@ -1,55 +1,46 @@
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/diptargha/streamlitwebapp/main.py)
 
-Getting started 
-=============================
 
+----------------------------------
+# Repository structure
 
-- [Installation](#Installation)
-- [Running ...repo_name...](#Running...repo_name...)
-- [Directory](#Directory)
+- [Directory tree](#Directory tree)
+- [Folders](#Folders)
 - [Email](#Email)
 
 ----------------------------------
-
-# Installation
-`1. Run "make.bat"`\
-`2. Once all packages have been installed ("press any key, to continue" will appear), close command prompt.`\
-`3. Open base directory as new project in PyCharm.`\
-`4. Once PyCharm"s init. processes complete (updating skeletons, indexing etc.), set virtual environment path. Either:`\
-`4.1 Select suggested directory in amber banner above code editor;`\
-`Or `\
-`4.1 File -> Settings -> Search "venv" -> Click configure icon -> Click "Add"`\
-`4.2 Select "Existing Directory" -> Select venv engine "...repor_base_dir...\venv\Scripts\python.exe"`\
-`4.3 Click "Apply" -> Click "Ok"`
-
-
-# File Tree
+# Directory tree
 
 ```
 ├── data/
-│
-├── docs/
-│   └── .gitignore
+│   └── 
+├── examples/
+│   └── 
+├── images/
+│   └── 
+├── scripts/
+│   └── 
 ├── venv/
 |   └── .gitignore
 └── README.md
-|
+│
 └── requirements.txt
 ```
-
-# Directory
-1. Documentation\
- `docs`
+----------------------------------
+# Folders
+1. data\
+ `sample csv file containing the Iris dataset from sklearn`
  
-2. Production Code:\
- &nbsp;&nbsp;&nbsp;`...repo_name...`\
- \
-2.1 User Interface:\
-&nbsp;&nbsp;&nbsp;`...repo_name...->app`\
-&nbsp;&nbsp;&nbsp;This will contain code used for operating the model through a user interface.\
- \
+2. examples\
+  `example scripts to try out different features in streamlit`
 
+3. images\
+  `all image files used in the app`
+4. script\
+  `all scripts`
+
+---------------------------------- 
 
 # Email
-Dr. Diptargha Chakravorty - Principal Consultant\
-<diptargha.chakravorty@tneigroup.com>
+Dr. Diptargha Chakravorty\
+<diptarghac@gmail.com>
