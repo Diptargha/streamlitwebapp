@@ -1,9 +1,10 @@
+![](https://github.com/Diptargha/streamlitwebapp/blob/master/images/appscreenshot.png?raw=true)
+
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/diptargha/streamlitwebapp/main.py)
 
 
-----------------------------------
-# Repository structure
-
+ Repository structure
+======================
 - [Directory tree](#Directory tree)
 - [Folders](#Folders)
 - [Email](#Email)
