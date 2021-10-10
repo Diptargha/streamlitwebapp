@@ -13,9 +13,9 @@ from script import aboutme
 
 st.set_page_config(layout="wide", page_title='Data Explorer')
 
-logo, name = st.sidebar.columns([0.6,0.4])
+logo, name = st.sidebar.columns([0.6, 0.4])
 with logo:
-    st_lottie(load_lottieurl(im.image_sidebar))
+    st_lottie(load_lottieurl(im.image_datacharts2))
 with name:
     st.markdown("<h1 style='text-align: left; color: grey; font-size: 32px'> \
                 Data Explorer </h1>", unsafe_allow_html=True)

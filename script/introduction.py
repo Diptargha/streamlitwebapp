@@ -22,22 +22,23 @@ def page_introduction():
                 unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
                 unsafe_allow_html=True)
-    col1, col2 = st.columns([0.6, 0.4])
+    col1, col2 = st.columns([0.45, 0.55])
     with col2:
         st.info("""
-                There are two main features: \n
+                There are two main features of this app: \n
                 - Explore a dataset through different charts
                 - Use Sweetviz reporting to get a deeper insight (coming soon) \n
-                Steps to use the app is explained below. Currently, the app supports
+                Steps to use the app are explained below. Currently, the app supports
                 *.txt* and *.csv* formats for the dataset. \n
-                Please feel free to use the sample file if you don't have one to hand.\n
+                Please feel free to use the sample file if you don't have one to hand
+                to explore the features.\n
                 
                 $←$ To start playing with the app, select an option on the 
                 left sidebar.
                 """)
 
     with col1:
-        st_lottie(load_lottieurl(im.image_datacharts1), height=300)
+        st_lottie(load_lottieurl(im.image_datacharts1), height=380)
 
     def make_line():
         """ Line divider between images. """
