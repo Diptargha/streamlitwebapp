@@ -256,7 +256,7 @@ def _plot_data_scatter(data, feature1, feature2, feature3, feature4, bCategorica
             color=feature3,
             size=feature4,
             # facet_col=feature3,
-            hover_data=["petal_width"],
+            hover_data=[feature4],
             # title="",
         )
     else:
