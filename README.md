@@ -8,7 +8,7 @@
 - [Folders](#Folders)
 - [Email](#Email)
 
-----------------------------------
+
 # Directory tree
 
 ```
@@ -26,7 +26,7 @@
 │
 └── requirements.txt
 ```
-----------------------------------
+
 # Folders
 1. data\
  `sample csv file containing the Iris dataset from sklearn`
@@ -39,7 +39,7 @@
 4. script\
   `all scripts`
 
----------------------------------- 
+
 
 # Email
 Dr. Diptargha Chakravorty\
