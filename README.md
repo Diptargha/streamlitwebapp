@@ -5,13 +5,12 @@
 
  Repository structure
 ======================
-- [Directory tree](#Directory tree)
+- [Directory tree](#Directory-tree)
 - [Folders](#Folders)
 - [Email](#Email)
 
 
 # Directory tree
-
 ```
 ├── data/
 │   └── 
