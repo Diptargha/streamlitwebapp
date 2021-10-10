@@ -169,3 +169,38 @@ def html_slideshow(image1, image2, image3):
                 """
     html_snip = html_snip1 + html_snip2 + html_snip3
     return html_snip
+
+
+def html_image():
+    """add an image to a page"""
+    # 'https://image.shutterstock.com/image-vector/vector-banner-design-circuit-board-260nw-1233925105.jpg'
+    add_image = """
+            <html>
+            <head>
+            <style>
+            body {
+              background-image: url('https://github.com/Diptargha/streamlitwebapp/blob/master/images/banner.png?raw=true');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-size: cover;
+              text-align: center;
+              color: white;
+              font-family: sans-serif;
+              font-size: 20px;
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h2> Welcome to </h2> 
+            <h1> Data Explorer </h1>
+            
+            <div>
+
+            </div>
+            
+            </body>
+            </html>
+    
+            """
+    return add_image

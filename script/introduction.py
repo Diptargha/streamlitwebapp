@@ -1,8 +1,10 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
+import streamlit.components.v1 as stc
 from PIL import Image
 import urllib.request as request
 from script.ui_components import load_lottieurl
+from script import add_html_css
 from script import all_images as im
 
 
@@ -18,10 +20,13 @@ def page_introduction():
     st.sidebar.write("")
     st.sidebar.write("")
 
-    st.markdown("<h2 style='text-align: center; color: grey;'> Welcome To </h2>",
-                unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
-                unsafe_allow_html=True)
+    # st.markdown("<h2 style='text-align: center; color: grey;'> Welcome To </h2>",
+    #             unsafe_allow_html=True)
+    stc.html(add_html_css.html_image(), height=200)
+
+    # st.markdown("<h1 style='text-align: center;'> Data Explorer</h1>",
+    #             unsafe_allow_html=True)
+
     col1, col2 = st.columns([0.45, 0.55])
     with col2:
         st.info("""
