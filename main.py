@@ -8,7 +8,7 @@ from script import csv_file_explorer
 from script.ui_components import load_lottieurl
 from script.introduction import page_introduction
 from script import all_images as im
-from script import create_sweetviz_report
+from script import create_profiling_report
 from script import aboutme
 
 st.set_page_config(layout="wide", page_title='Data Explorer')
@@ -29,7 +29,7 @@ def main():
     pages = {
         "Home": page_introduction,
         "Explore through charts": csv_file_explorer.run,
-        "Explore through Sweetviz": create_sweetviz_report.run,
+        "Explore through pandas profiling": create_profiling_report.run,
         "About the author": aboutme.run,
     }
 

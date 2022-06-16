@@ -32,7 +32,7 @@ def page_introduction():
         st.info("""
                 There are two main features of this app: \n
                 - Explore a dataset through different charts
-                - Use Sweetviz reporting to get a deeper insight (coming soon) \n
+                - Use Pandas Profiling report to get a deeper insight into the data \n
                 Steps to use the app are explained below. Currently, the app supports
                 *.txt* and *.csv* formats for the dataset. \n
                 Please feel free to use the sample file if you don't have one to hand
