@@ -409,7 +409,7 @@ def run():
 
         categorical = col5.selectbox(
             'Is it a categorical dataset?',
-            ['Yes', 'No']
+            ['No', 'Yes']
         )
 
         if categorical == 'Yes':
