@@ -6,7 +6,7 @@ from streamlit import session_state as state
 from streamlit_elements import elements, sync, event
 from types import SimpleNamespace
 
-from script.dashboard.nivo_charts import Pie
+from script.dashboard.nivo_charts import Pie, Line, Radar
 from .dashboard import Dashboard
 
 
@@ -40,6 +40,8 @@ def run():
             # editor=Editor(board, 0, 0, 6, 11, minW=3, minH=3),
             # player=Player(board, 0, 12, 6, 10, minH=5),
             pie=Pie(board, 6, 0, 6, 7, minW=3, minH=4),
+            line=Line(board, 6, 0, 6, 7, minW=3, minH=4),
+            radar=Radar(board, 6, 0, 6, 7, minW=3, minH=4),
             # radar=Radar(board, 12, 7, 3, 7, minW=2, minH=4),
             # card=Card(board, 6, 7, 3, 7, minW=2, minH=4),
             # data_grid=DataGrid(board, 6, 13, 6, 7, minH=4),
@@ -58,6 +60,8 @@ def run():
 
         with w.dashboard(rowHeight=57):
             w.pie(json.dumps(Pie.DEFAULT_DATA, indent=2))
+            w.line(json.dumps(Line.DEFAULT_DATA, indent=2))
+            w.radar(json.dumps(Radar.DEFAULT_DATA, indent=2))
             # w.editor()
             # w.player()
             # w.pie(w.editor.get_content("Pie chart"))
