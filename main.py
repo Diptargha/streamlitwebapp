@@ -7,6 +7,7 @@ from streamlit_lottie import st_lottie
 from script import csv_file_explorer
 from script.ui_components import load_lottieurl
 from script.introduction import page_introduction
+from script.dashboard import display_nivocharts
 from script import all_images as im
 from script import create_profiling_report
 from script import aboutme
@@ -30,6 +31,7 @@ def main():
         "Home": page_introduction,
         "Explore through charts": csv_file_explorer.run,
         "Explore through pandas profiling": create_profiling_report.run,
+        "Explore nivo charts": display_nivocharts.run,
         "About the author": aboutme.run,
     }
 

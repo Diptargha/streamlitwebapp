@@ -17,7 +17,8 @@ def _main(df):
         st_profile_report(pr)
 
 
-@st.cache(allow_output_mutation=True)
+# @st.cache_data(allow_output_mutation=True)
+@st.cache_data()
 def gen_profile_report(df, *report_args, **report_kwargs):
     return df.profile_report(*report_args, **report_kwargs)
 
