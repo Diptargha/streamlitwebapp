@@ -415,19 +415,38 @@ def run():
 
     uploaded_file = st.file_uploader('')
     if uploaded_file is not None:
-        if '.csv' in uploaded_file.name or '.txt' in uploaded_file.name :
-            df = pd.read_csv(uploaded_file)
-        elif '.xlsx' in uploaded_file.name:
-            df = pd.read_excel(uploaded_file)
-        else:
-            st.write("""
-            ***Please upload a csv, excel or txt file***
-            """)
-            return
+        try:
+            if '.csv' in uploaded_file.name or '.txt' in uploaded_file.name:
+                # Handle CSV with more than one header row
+                df = pd.read_csv(uploaded_file, header=0)
+                # Handle CSV with more than one header row
+                df = pd.read_csv(uploaded_file, header=[0, 1])  # Read the first two rows as headers
+                if isinstance(df.columns, pd.MultiIndex):  # Check if multi-level headers exist
+                    df.columns = [' '.join(col).strip() for col in df.columns.values]  # Combine the two header rows
+                    df = df[1:]  # Remove the second row (now redundant)ndant) # Try reading with multi-level headers
+            elif '.xlsx' in uploaded_file.name:
+                # Handle Excel files with multiple sheets
+                sheet_names = pd.ExcelFile(uploaded_file).sheet_names
+                selected_sheet = st.selectbox('Select a sheet to load:', sheet_names)
+                df = pd.read_excel(uploaded_file, sheet_name=selected_sheet)
+            else:
+                st.write("""
+                ***Please upload a csv, excel or txt file***
+                """)
+                return
 
-        st.write("""
-        ***file uploaded successfully***
-        """)
+            # Handle NaN entries
+            if df.isnull().values.any():
+                st.warning(
+                    "The uploaded file contains missing values (NaN). Please clean the data or handle missing values.")
+                st.write("Preview of rows with missing values:")
+                st.write(df[df.isnull().any(axis=1)])
+
+            st.write("""
+            ***File uploaded successfully***
+            """)
+        except Exception as e:
+            st.error(f"An error occurred while processing the file: {e}")
 
         headers = df.columns
         if 'Unnamed: 0' in headers:
